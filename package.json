@@ -1,0 +1,31 @@
+{
+  "name": "aolausoro.tech",
+  "version": "1.0.0",
+  "description": "portfolio website",
+  "main": "App.js",
+  "scripts": {
+    "dev": "npm run watch:css && npm run clean && parcel public/index.html --out-dir development -p 3000",
+    "build": "npm run build:css && parcel build public/index.html --out-dir dist --public-url ./",
+    "clean": "rimraf ./development && rimraf -rf ./.cache",
+    "build:css": "postcss src/assets/tailwind.css -o src/assets/main.css", 
+    "watch:css": "postcss src/assets/tailwind.css -o src/assets/main.css"
+  },
+  "author": "Adewoyin Oladipupo-Usoro",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/plugin-transform-runtime": "^7.9.6",
+    "@babel/runtime-corejs2": "^7.9.6",
+    "autoprefixer": "^9.7.6",
+    "parcel-bundler": "^1.12.4",
+    "postcss-cli": "^7.1.1",
+    "postcss-modules": "^2.0.0",
+    "rimraf": "^3.0.2",
+    "tailwindcss": "^1.4.2"
+  },
+  "dependencies": {
+    "chokidar": "3.0.0",
+    "core-js": "^3",
+    "fsevents": "^2.1.3"
+  }
+}
