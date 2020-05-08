@@ -1,4 +1,5 @@
 require("babel-polyfill");
+require("dotenv").config();
 
 const nodemailer = require("nodemailer");
 const { validationResult } = require("express-validator");
@@ -108,15 +109,17 @@ exports.sendMail = (req, res, next) => {
 
   // create reusable transporter object using the default SMTP transport
   const transporter = nodemailer.createTransport({
-    host: "smtp.office365.com",
+    host: "outlook.office365.com",
     port: 587,
     secure: false, // true for 465, false for other ports
+    requireTLS: true,
     auth: {
       user: process.env.USER_EMAIL, // generated user
       pass: process.env.USER_PASS, // generated password
     },
     tls: {
       rejectUnauthorized: false,
+      ciphers: "SSLv3",
     },
     // debug: true, // show debug output
     // logger: true, // log information in console
@@ -125,7 +128,7 @@ exports.sendMail = (req, res, next) => {
   // Setup email data with unicode symbols
   const mailOptions = {
     from: '"Adewoyin Oladipupo-Usoro" <adewoyin@aolausoro.tech>', // sender address
-    to: "adewoyin@aolausoro.tech, aolausoro@gmail.com", // list of receivers
+    to: "adewoyin@aolausoro.tech", // list of receivers
     text: "Hello?", // plain text body
     html: output, // html body
   };
