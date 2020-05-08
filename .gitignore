@@ -5,6 +5,15 @@ node_modules
 development
 dist
 .vscode/
+
+config.env
+
+/node_modules
+.cache/
+development
+dist
+
+
 /.pnp
 .pnp.js
 
