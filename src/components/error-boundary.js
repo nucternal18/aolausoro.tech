@@ -40,7 +40,7 @@ class ErrorBoundary extends Component {
 }
 
 const ErrorImageOverlay = styled.div`
-  height: 60vh;
+  height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: column;

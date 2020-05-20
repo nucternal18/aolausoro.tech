@@ -1,8 +1,9 @@
 require("babel-polyfill");
 require("dotenv").config();
 
+// const request = require("request");
 const nodemailer = require("nodemailer");
-const { validationResult } = require("express-validator");
+// const { validationResult } = require("express-validator");
 const firebase = require("firebase/app");
 
 // Add the Firebase products that you want to use
@@ -24,7 +25,7 @@ firebase.initializeApp(firebaseConfig);
 
 const database = firebase.firestore();
 
-exports.getMessages = async (req, res, next) => {
+exports.getMessages = async (req, res) => {
   const Message = {
     name: req.body.name,
     email: req.body.email,
@@ -58,7 +59,7 @@ exports.getMessages = async (req, res, next) => {
   }
 };
 
-exports.addMessages = async (req, res, next) => {
+exports.addMessages = async (req, res) => {
   const Message = {
     name: req.body.name,
     email: req.body.email,
@@ -90,6 +91,7 @@ exports.addMessages = async (req, res, next) => {
       error: "Server Error",
     });
   }
+
 };
 
 exports.sendMail = (req, res, next) => {
@@ -155,3 +157,31 @@ exports.sendMail = (req, res, next) => {
 
   next();
 };
+
+// exports.checkCaptcha = (req, res, next) => {
+//   if (
+//     req.body.captcha === undefined ||
+//     req.body.captcha === "" ||
+//     req.body.captcha === null
+//   ) {
+//     return res.json({ success: false, msg: "please select captcha" });
+//   }
+//   // Secret Key
+//   const secretKey = process.env.GOOGLE_CAPTCHA_SECRETKEY;
+
+//   // Verify Url
+//   const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}$response=${req.body.captcha}&remoteip=${req.connection.remoteAddress}`;
+
+//   // Make request to verify urlencoded
+//   request(verifyUrl, (err, response, body) => {
+//     body = JSON.parse(body);
+
+//     // If not successful
+//     if (body.success !== undefined && !body.success) {
+//       return res.json({ success: false, msg: "Failed captcha verification" });
+//     }
+
+//     // If successful
+//     return res.json({ success: true, msg: "Captcha Successful" });
+//   });
+// };

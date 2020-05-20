@@ -63,7 +63,9 @@
     "prettier": "^2.0.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-google-recaptcha": "^2.0.1",
     "react-router-dom": "^5.1.2",
+    "request": "^2.88.2",
     "styled-components": "^5.1.0"
   },
   "babel": {
