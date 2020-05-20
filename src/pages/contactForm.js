@@ -1,5 +1,5 @@
 import "babel-polyfill";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import ReCAPTCHA from "react-google-recaptcha";
 
@@ -118,11 +118,7 @@ const ContactForm = () => {
           >
             Send
           </button>
-          <ReCAPTCHA
-            ref={recaptchaRef}
-            size="invisible"
-            sitekey={SITE_KEY}
-          />
+          <ReCAPTCHA ref={recaptchaRef} size="invisible" sitekey={SITE_KEY} />
         </form>
       )}
     </div>
