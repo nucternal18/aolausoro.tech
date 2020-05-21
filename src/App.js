@@ -8,7 +8,7 @@ import Spinner from "./components/Spinner";
 import Home from "./pages/Home-page";
 import About from "./pages/about";
 import Portfolio from "./pages/portfolio";
-import ContactForm from "./pages/contactForm";
+import Contact from "./pages/contact-page";
 import "./style.css";
 
 const App = () => {
@@ -22,7 +22,7 @@ const App = () => {
               <Route exact path="/" component={Home} />
               <Route path="/about" component={About} />
               <Route path="/portfolio" component={Portfolio} />
-              <Route path="/contact" component={ContactForm} />
+              <Route path="/contact" component={Contact} />
             </Suspense>
           </ErrorBoundary>
         </Switch>

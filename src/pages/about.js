@@ -4,8 +4,8 @@ import shiftKeyOnTypewriter from "../assets/images/shiftKeyOnTypewriter.jpg";
 const About = () => {
   return (
     <div className="w-full mx-auto flex-grow">
-      <div className="container mx-auto mt-1">
-        <div className="flex flex-col">
+      <div className="container mx-auto mt-0 bg-white shadow-md rounded">
+        <div className="flex flex-col px-1">
           <div className="object-cover w-full">
             <img
               src={shiftKeyOnTypewriter}
