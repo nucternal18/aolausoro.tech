@@ -1,7 +1,7 @@
 const express = require("express");
 
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3001;
 const cors = require("cors");
 const dotenv = require("dotenv");
 const { EventEmitter } = require("events");
@@ -38,7 +38,7 @@ app.use(bodyParser.json());
 app.use("/contactform", messages);
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
+  app.use(express.static("dist/"));
 
   app.get("*", (req, res) =>
     res.sendFile(path.resolve(__dirname, "public", "index.html"))
