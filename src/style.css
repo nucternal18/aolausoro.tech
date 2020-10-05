@@ -8,7 +8,21 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background: url('./assets/images/ruijia-wang-_cX76xaZB5A-unsplash.jpg') no-repeat center center/cover;
+    background: url('https://firebasestorage.googleapis.com/v0/b/aolausoro-tech.appspot.com/o/ruijia-wang-_cX76xaZB5A-unsplash.jpg?alt=media&token=42caf6dc-d8f3-4c07-be3d-a302166232df') no-repeat center center/cover;
+    background-size: cover;
+    scroll-behavior: smooth;
+    overflow: hidden;
+}
+
+.contact {
+	object-fit: cover;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: linear-gradient(
+      rgba(53, 51, 51, 0.45), 
+      rgba(255, 0, 0, 0.45)
+    ), url('https://firebasestorage.googleapis.com/v0/b/aolausoro-tech.appspot.com/o/tablet-coffee.jpg?alt=media&token=3d35366e-4d81-477f-8515-7ecdf7c37fbe') no-repeat center center/cover ;
     background-size: cover;
     scroll-behavior: smooth;
 }

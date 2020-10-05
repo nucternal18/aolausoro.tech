@@ -1,74 +1,86 @@
 /* eslint-disable jsx-a11y/iframe-has-title */
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import Cookies from "js-cookie";
+import useFirestore from "../hooks/useFirestore";
+import PortfolioAdmin from "./portfolio-admin";
+
+// context
+import { AuthContext } from "../context/authContext";
+
+// firebase
+import { auth, createUserProfileDocument } from "../firebase/config";
 
 const Portfolio = () => {
-  return (
-    <div className="container mx-auto flex-grow mb-4">
-      <h1 className="font-bold text-black text-2xl text-center my-4">
-        PORTFOLIO
-      </h1>
+  const { docs } = useFirestore("projects");
+  const authContext = useContext(AuthContext);
 
-      <section className="mx-auto">
+  const { isAuthenticated, setIsAuthenticated } = authContext;
+
+  const authCookie = (e) => {
+    const authToken = Cookies.get("auth-token");
+    if (authToken) {
+      setIsAuthenticated(true);
+    }
+  };
+
+  useEffect(() => {
+    authCookie();
+    // eslint-disable-next-line
+  }, []);
+
+  useEffect(() => {
+    const unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+      if (userAuth) {
+        const useRef = await createUserProfileDocument(userAuth);
+
+        useRef.onSnapshot((snapShot) => {
+          setUserData({
+            id: snapShot.id,
+            ...snapShot.data(),
+          });
+        });
+      }
+
+      authContext.setUserData(userAuth);
+    });
+    return () => {
+      unsubscribeFromAuth();
+    };
+    // eslint-disable-next-line
+  }, []);
+
+  return (
+    <>
+      <section className="container mx-auto flex-grow mb-4">
+        {isAuthenticated && <PortfolioAdmin />}
+        <h1 className="font-bold text-black text-2xl text-center my-4">
+          PORTFOLIO
+        </h1>
+
         <h2 className="text-center">Some of my projects</h2>
 
         <div className="flex justify-between flex-wrap my-4 px-4 sm:px-0">
-          <div className="md:max-w-sm w-full rounded overflow-hidden shadow-lg my-4">
-            <iframe
-              className="w-full h-56"
-              src="https://github-finder200719.netlify.app"
-              alt="project"
-            />
-            <div className="flex flex-row justify-between px-6 py-4">
-              <a href="https://github-finder200719.netlify.app">
-                <p className="font-bold text-xl my-2">
-                  <span className="code">&lt;</span>
-                  GitHub Finder
-                  <span className="code">&#47;&gt;</span>
-                </p>
-              </a>
-              <a href="https://github.com/nucternal18/github-finder">
-                <i className="fab fa-github font-bold text-xl my-2" />
-              </a>
-            </div>
-          </div>
-          <div className="md:max-w-sm w-full rounded overflow-hidden shadow-lg my-4">
-            <iframe
-              className="w-full h-56"
-              src="https://hidden-brushlands-92854.herokuapp.com/login"
-              alt="project"
-            />
-            <div className="flex flex-row justify-between px-6 py-4">
-              <a href="https://hidden-brushlands-92854.herokuapp.com/login">
-                <p className="font-bold text-xl my-2">
-                  <span className="code">&lt;</span>
-                  Contact Keeper
-                  <span className="code">&#47;&gt;</span>
-                </p>
-              </a>
-              <a href="https://github.com/nucternal18/contact-keeper">
-                <i className="fab fa-github font-bold text-xl my-2" />
-              </a>
-            </div>
-          </div>
-          <div className="md:max-w-sm w-full rounded overflow-hidden shadow-lg my-4">
-            <iframe
-              className="w-full h-56"
-              src="https://norbl-clothing.herokuapp.com/"
-              alt="project"
-            />
-            <div className="flex flex-row justify-between px-6 py-4">
-              <a href="https://norbl-clothing.herokuapp.com/">
-                <p className="font-bold text-xl my-2">
-                  <span className="">&lt;</span>
-                  norbl clothing
-                  <span className="">&#47;&gt;</span>
-                </p>
-              </a>
-              <a href="https://github.com/nucternal18/norbl-clothing">
-                <i className="fab fa-github font-bold text-xl my-2" />
-              </a>
-            </div>
-          </div>
+          {docs &&
+            docs.map((doc) => (
+              <div
+                key={doc.id}
+                className="md:max-w-sm w-full rounded overflow-hidden shadow-lg my-4"
+              >
+                <img src={doc.url} alt="project" />
+                <div className="flex flex-row justify-between px-6 py-4">
+                  <a href="https://github-finder200719.netlify.app">
+                    <p className="font-bold text-xl my-2">
+                      <span className="code">&lt;</span>
+                      {doc.projectName}
+                      <span className="code">&#47;&gt;</span>
+                    </p>
+                  </a>
+                  <a href={doc.github}>
+                    <i className="fab fa-github font-bold text-xl my-2" />
+                  </a>
+                </div>
+              </div>
+            ))}
         </div>
         <div className="text-center">
           <a
@@ -80,7 +92,7 @@ const Portfolio = () => {
           </a>
         </div>
       </section>
-    </div>
+    </>
   );
 };
 

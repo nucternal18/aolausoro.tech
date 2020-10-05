@@ -27,7 +27,7 @@ const ContactForm = () => {
       message,
     };
 
-    await axios.post('/contactform', newMessage);
+    await axios.post("/contactform", newMessage);
     setName("");
     setEmail("");
     setSubject("");
@@ -40,7 +40,9 @@ const ContactForm = () => {
   };
 
   return (
-    <div className='w-full md:max-w-md mx-auto mt-16 flex-grow'>
+    <div
+      className='w-full md:max-w-xl mx-auto mt-16 flex-grow'
+    >
       {messageSent ? (
         <div className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 mx-3 md:mx-0'>
           <h2 className='text-center py-4'>Message Sent!</h2>
@@ -54,7 +56,7 @@ const ContactForm = () => {
         </div>
       ) : (
         <form
-          className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 mx-3 md:mx-0'
+          className='bg-orange-500 shadow-md rounded px-8 pt-6 pb-8 mb-4 mx-3 md:mx-0'
           onSubmit={sendMessage}
         >
           <h2 className='font-mono tracking-tight text-gray-800 text-2xl md:text-4xl text-center mt-2'>

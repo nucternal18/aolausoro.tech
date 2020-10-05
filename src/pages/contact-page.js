@@ -4,7 +4,11 @@ import ContactForm from "../components/contactForm";
 const Contact = () => {
   return (
     <>
-      <ContactForm />
+      <div className="contact mx-auto flex-grow w-full -m-1">
+        <div>
+          <ContactForm />
+        </div>
+      </div>
     </>
   );
 };

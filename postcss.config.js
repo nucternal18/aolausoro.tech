@@ -1,4 +1,12 @@
-const tailwindcss = require('tailwindcss');
+const tailwindcss = require("tailwindcss");
+
 module.exports = {
-  plugins: [tailwindcss('./tailwind.js'), require('autoprefixer')],
+  future: {
+    removeDeprecatedGapUtilities: true,
+  },
+  plugins: [
+    tailwindcss("./tailwind.js"),
+    require("tailwindcss"),
+    require("autoprefixer"),
+  ],
 };

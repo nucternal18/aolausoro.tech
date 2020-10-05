@@ -11,7 +11,7 @@ require("firebase/auth");
 require("firebase/firestore");
 
 const firebaseConfig = {
-  apiKey: process.env.FIREBASE_API,
+  apiKey: "AIzaSyDVHX4TdcaVQ6OYU0BzowtW27fymh8Lukk",
   authDomain: "aolausoro-tech.firebaseapp.com",
   databaseURL: "https://aolausoro-tech.firebaseio.com",
   projectId: "aolausoro-tech",
