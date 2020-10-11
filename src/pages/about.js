@@ -6,7 +6,7 @@ const url =
 const About = () => {
   return (
     <div className="w-full mx-auto flex-grow bg-gradient-to-br via-red-500 to-pink-500">
-      <div className="container mx-auto mt-0 shadow-md rounded">
+      <div className="container mx-auto -mt-1 shadow-md rounded">
         <div className="flex flex-col">
           <div className="object-cover w-full">
             <img

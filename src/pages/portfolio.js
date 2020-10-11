@@ -59,24 +59,26 @@ const Portfolio = () => {
 
         <h2 className="text-center">Some of my projects</h2>
 
-        <div className="flex justify-between flex-wrap my-4 px-4 sm:px-0">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-4 my-4 px-4 sm:px-0">
           {docs &&
             docs.map((doc) => (
               <div
                 key={doc.id}
-                className="md:max-w-sm w-full rounded overflow-hidden shadow-lg my-4"
+                className="md:max-w-lg w-full rounded overflow-hidden shadow-lg my-4"
               >
-                <img src={doc.url} alt="project" />
-                <div className="flex flex-row justify-between px-6 py-4">
-                  <a href="https://github-finder200719.netlify.app">
-                    <p className="font-bold text-xl my-2">
+                <div>
+                  <img src={doc.url} alt="project" />
+                </div>
+                <div className="mt-1 flex flex-row justify-between px-6 py-2">
+                  <a href={doc.address}>
+                    <p className="font-bold text-xl">
                       <span className="code">&lt;</span>
                       {doc.projectName}
                       <span className="code">&#47;&gt;</span>
                     </p>
                   </a>
                   <a href={doc.github}>
-                    <i className="fab fa-github font-bold text-xl my-2" />
+                    <i className="fab fa-github font-bold text-2xl" />
                   </a>
                 </div>
               </div>

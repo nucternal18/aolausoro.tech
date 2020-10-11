@@ -11,21 +11,22 @@ const RightNav = ({ open, setOpen }) => {
   const { isAuthenticated, logout } = authContext;
   return (
     <Ul open={open} onClick={() => setOpen(!open)}>
-      <li className="block px-1 py-2 m-1 ">
-        <Link to="/">HOME</Link>
+      <li className='block px-1 py-2 m-1 '>
+        <Link to='/'>HOME</Link>
       </li>
-      <li className="block px-1 py-2 m-1  ">
-        <Link to="/about">ABOUT</Link>
+      <li className='block px-1 py-2 m-1  '>
+        <Link to='/about'>ABOUT</Link>
       </li>
-      <li className="block px-1 py-2 m-1  ">
-        <Link to="/portfolio">PORTFOLIO</Link>
+      <li className='block px-1 py-2 m-1  '>
+        <Link to='/portfolio'>PORTFOLIO</Link>
       </li>
-      <li className="block px-1 py-2 m-1  ">
-        <Link to="/contact">CONTACT</Link>
+      <li className='block px-1 py-2 m-1  '>
+        <Link to='/contact'>CONTACT</Link>
       </li>
       {isAuthenticated && (
-        <li onClick={() => logout()} className="block px-1 py-2 m-1">
-          Logout
+        <li onClick={() => logout()} className='block px-1 py-2 m-1'>
+          <i className='fas fa-sign-out-alt'></i>
+          LOGOUT
         </li>
       )}
     </Ul>
