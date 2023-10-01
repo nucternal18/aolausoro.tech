@@ -85,7 +85,7 @@
     "regenerator-runtime": "^0.13.7",
     "request": "^2.88.2",
     "styled-components": "^5.1.0",
-    "tailwindcss": "^1.8.10"
+    "tailwindcss": "^2.2.0"
   },
   "browserslist": [
     "> 1%",
